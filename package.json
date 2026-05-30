@@ -1,0 +1,39 @@
+{
+  "name": "glitchradar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node app/server.js",
+    "dev": "nodemon app/server.js",
+    "css:watch": "npx @tailwindcss/cli -i ./app/public/css/main.css -o ./app/public/css/output.css --watch",
+    "css:build": "npx @tailwindcss/cli -i ./app/public/css/main.css -o ./app/public/css/output.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgm-tg/GlitchRadar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dgm-tg/GlitchRadar/issues"
+  },
+  "homepage": "https://github.com/dgm-tg/GlitchRadar#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.10.0",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "nodemon": "^3.1.14",
+    "tailwindcss": "^4.3.0"
+  }
+}
