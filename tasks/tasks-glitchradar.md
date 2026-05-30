@@ -131,17 +131,17 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 5.7 Create `public/js/performance.js` — on page load fetch `GET /transactions/groups`; render table rows; wire up sort and filter controls to re-fetch; clicking a row navigates to the detail page
   - [x] 5.8 Create `public/js/performance-detail.js` — read group name from the URL, fetch `GET /transactions`, render the samples table with pagination
 
-- [ ] 6.0 Uptime Monitoring
-  - [ ] 6.1 Add schema to `db/schema.sql` for tables: `monitors` (org_id, name, url, interval_seconds, webhook_url, last_status, last_checked_at) and `ping_results` (monitor_id, status, response_time_ms, http_status_code, timestamp); add index on `(monitor_id, timestamp)`
-  - [ ] 6.2 Build `POST /monitors` — create a new monitor for the current org (name, URL, optional webhook URL); default interval is 60 seconds
-  - [ ] 6.3 Build `GET /monitors` — list all monitors for the current org with their last status and how long they have been in that state
-  - [ ] 6.4 Build `DELETE /monitors/:id` — remove a monitor and its ping history
-  - [ ] 6.5 Build `GET /monitors/:id/pings` — return the last N ping results for a monitor (used to render the timeline bar)
-  - [ ] 6.6 Create `services/scheduler.js` — on server startup, use `node-cron` to schedule a recurring job that: fetches all active monitors, sends an HTTP GET to each URL, records the result in `ping_results`, and updates `last_status` and `last_checked_at` on the monitor
-  - [ ] 6.7 Add status transition detection in `services/scheduler.js` — compare new status against `last_status`; if changed from up→down or down→up, trigger alert delivery
-  - [ ] 6.8 Implement `services/email.js` — send a down/recovery alert email to all org members using `nodemailer`; include monitor name, URL, and timestamp in the email body
-  - [ ] 6.9 Implement `services/webhook.js` — POST a JSON payload to the monitor's configured webhook URL on down/recovery; retry up to 3 times with exponential backoff on failure
-  - [ ] 6.10 Create `views/uptime/index.html` — monitors list with: monitor name, URL, timeline bar (colored segments), current status label (e.g., "Down for 21 hours"); "+ Add monitor" button in the top-right
-  - [ ] 6.11 Create `public/js/uptime.js` — on page load fetch `GET /monitors`; for each monitor also fetch `GET /monitors/:id/pings`; render the monitor list; draw the timeline bar as a series of colored `<div>` segments (green = up, red = down) based on ping history
-  - [ ] 6.12 Add "+ Add monitor" modal in `public/js/uptime.js` — show a form overlay on button click; submit via `fetch POST /monitors`; append the new monitor to the list on success without a full page reload
-  - [ ] 6.13 Add delete monitor handling in `public/js/uptime.js` — confirm then send `DELETE /monitors/:id`; remove the row from the list on success
+- [x] 6.0 Uptime Monitoring
+  - [x] 6.1 Add schema to `db/schema.sql` for tables: `monitors` and `ping_results`; added `status_changed_at` via safe ALTER TABLE migration in `database.js`
+  - [x] 6.2 Build `POST /monitors` — create monitor, validate URL, default 60s interval
+  - [x] 6.3 Build `GET /monitors/api` — list monitors with last_status and status_changed_at for duration display
+  - [x] 6.4 Build `DELETE /monitors/:id` — remove monitor and cascade-delete ping history
+  - [x] 6.5 Build `GET /monitors/:id/pings` — last N pings oldest-first for timeline rendering
+  - [x] 6.6 Create `services/scheduler.js` — node-cron every minute, batched HTTP GET pings, records results
+  - [x] 6.7 Status transition detection in scheduler — updates `status_changed_at`, triggers email + webhook alerts
+  - [x] 6.8 `services/email.js` — sendDownAlert + sendRecoveryAlert (done in task 2)
+  - [x] 6.9 `services/webhook.js` — POST with 3-retry exponential backoff
+  - [x] 6.10 Create `views/uptime/index.html` — monitor cards with timeline bar, status label, add/delete UI
+  - [x] 6.11 Create `public/js/uptime.js` — fetch monitors + pings, render timeline `<div>` segments
+  - [x] 6.12 Add monitor modal — fetch POST, append card without reload
+  - [x] 6.13 Delete monitor — confirm, DELETE request, remove card from DOM

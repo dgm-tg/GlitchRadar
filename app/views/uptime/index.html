@@ -1,0 +1,45 @@
+<!-- Top bar actions injected via JS -->
+<div id="uptime-header" class="flex items-center justify-between mb-4">
+  <span id="monitor-count" class="text-sm" style="color:var(--color-text-muted)"></span>
+  <button id="add-monitor-btn" class="btn btn-primary">+ Add monitor</button>
+</div>
+
+<!-- Monitor list -->
+<div id="monitor-list" class="flex flex-col gap-3">
+  <div class="text-center py-12" style="color:var(--color-text-muted)" id="loading-msg">Loading…</div>
+</div>
+
+<!-- Empty state -->
+<div id="empty-state" class="hidden text-center py-16">
+  <p class="font-heading text-lg font-medium mb-1" style="color:var(--color-text)">No monitors yet</p>
+  <p class="text-sm mb-4" style="color:var(--color-text-muted)">Add a URL and GlitchRadar will ping it every minute.</p>
+  <button onclick="document.getElementById('add-monitor-btn').click()" class="btn btn-primary">+ Add monitor</button>
+</div>
+
+<!-- Add monitor modal -->
+<div id="add-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background:rgba(0,0,0,0.4)">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+    <h2 class="font-heading text-lg font-semibold mb-4">Add monitor</h2>
+    <div id="modal-error" class="hidden mb-4 px-4 py-3 rounded text-sm" style="background:#FEE2E2;color:#991B1B"></div>
+    <form id="add-monitor-form" class="flex flex-col gap-4">
+      <div>
+        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Name</label>
+        <input type="text" name="name" required class="form-input w-full" placeholder="Production API" />
+      </div>
+      <div>
+        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">URL</label>
+        <input type="url" name="url" required class="form-input w-full" placeholder="https://api.example.com/health" />
+      </div>
+      <div>
+        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Webhook URL <span style="color:var(--color-text-muted)">(optional)</span></label>
+        <input type="url" name="webhook_url" class="form-input w-full" placeholder="https://hooks.slack.com/…" />
+      </div>
+      <div class="flex gap-2 justify-end mt-1">
+        <button type="button" id="modal-cancel" class="btn btn-secondary">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add monitor</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/uptime.js"></script>

@@ -124,8 +124,9 @@ CREATE TABLE IF NOT EXISTS monitors (
   url TEXT NOT NULL,
   interval_seconds INTEGER NOT NULL DEFAULT 60,
   webhook_url TEXT,
-  last_status TEXT, -- 'up' | 'down' | NULL (never checked)
+  last_status TEXT,        -- 'up' | 'down' | NULL (never checked)
   last_checked_at DATETIME,
+  status_changed_at DATETIME, -- when last_status last changed
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

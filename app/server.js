@@ -3,7 +3,8 @@ const session = require('express-session');
 const path = require('path');
 const { engine } = require('express-handlebars');
 const db = require('./db/database');
-const { requireAuth } = require('./middleware/auth');
+const { requireAuth }    = require('./middleware/auth');
+const { startScheduler } = require('./services/scheduler');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,4 +53,5 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`GlitchRadar running at http://localhost:${PORT}`);
+  startScheduler();
 });

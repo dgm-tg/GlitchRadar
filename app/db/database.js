@@ -13,4 +13,7 @@ db.pragma('foreign_keys = ON');
 const schema = fs.readFileSync(SCHEMA_PATH, 'utf8');
 db.exec(schema);
 
+// Safe migrations for columns added after initial schema
+try { db.exec('ALTER TABLE monitors ADD COLUMN status_changed_at DATETIME'); } catch {}
+
 module.exports = db;
