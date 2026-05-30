@@ -7,33 +7,33 @@
   </div>
 
   {{#if invalid}}
-    <h1 class="font-heading text-2xl font-semibold text-center mb-2" style="color:var(--color-text)">Invalid invite</h1>
-    <p class="text-center text-sm" style="color:var(--color-text-muted)">This invite link is invalid or has already been used.</p>
+    <h1 class="font-heading text-center font-semibold mb-2" style="font-size:var(--font-size-xl);color:var(--color-text)">Invalid invite</h1>
+    <p class="text-center" style="font-size:var(--font-size-md);color:var(--color-text-muted)">This invite link is invalid or has already been used.</p>
   {{else}}
-    <h1 class="font-heading text-2xl font-semibold text-center mb-1" style="color:var(--color-text)">Accept invitation</h1>
-    <p class="text-center text-sm mb-8" style="color:var(--color-text-muted)">
+    <h1 class="font-heading text-center font-semibold mb-1" style="font-size:var(--font-size-xl);color:var(--color-text)">Accept invitation</h1>
+    <p class="text-center mb-8" style="font-size:var(--font-size-md);color:var(--color-text-muted)">
       You've been invited to join a team. Set up your account to continue.
     </p>
 
-    <div id="error-msg" class="hidden mb-4 px-4 py-3 rounded text-sm" style="background:#FEE2E2;color:#991B1B;border:1px solid #FECACA"></div>
+    <div id="error-msg" class="alert-error hidden mb-4"></div>
 
-    <form id="invite-form" class="flex flex-col gap-4" data-token="{{token}}">
-      <div>
-        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Email</label>
+    <form id="invite-form" class="form-stack" data-token="{{token}}">
+      <div class="form-group">
+        <label class="form-label">Email</label>
         <input type="email" value="{{email}}" disabled
-          class="form-input w-full opacity-60 cursor-not-allowed" />
+          class="form-input" style="opacity:0.6;cursor:not-allowed" />
       </div>
-      <div>
-        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Your name</label>
+      <div class="form-group">
+        <label class="form-label">Your name</label>
         <input type="text" name="name" required autocomplete="name"
-          class="form-input w-full" placeholder="Jane Smith" />
+          class="form-input" placeholder="Jane Smith" />
       </div>
-      <div>
-        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Password</label>
+      <div class="form-group">
+        <label class="form-label">Password</label>
         <input type="password" name="password" required autocomplete="new-password" minlength="8"
-          class="form-input w-full" placeholder="Min. 8 characters" />
+          class="form-input" placeholder="Min. 8 characters" />
       </div>
-      <button type="submit" class="btn btn-primary w-full justify-center mt-1" id="submit-btn">
+      <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;margin-top:var(--space-1)">
         Create account
       </button>
     </form>

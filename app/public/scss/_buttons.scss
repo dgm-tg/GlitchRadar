@@ -1,0 +1,59 @@
+@use 'variables' as *;
+
+// =============================================================
+// Buttons
+// =============================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-1;
+  padding: 0 $space-3;
+  height: $input-height;
+  border-radius: $radius;
+  font-family: $font-mono;
+  font-size: $font-size-md;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background $transition, border-color $transition, color $transition;
+  white-space: nowrap;
+  line-height: 1;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: $color-brand;
+  color: #fff;
+  border-color: $color-brand;
+
+  &:hover  { background: $color-brand-dark; border-color: $color-brand-dark; }
+  &:active { background: $color-brand-dark; }
+}
+
+.btn-secondary {
+  background: $color-surface;
+  color: $color-text;
+  border-color: $color-border;
+
+  &:hover { background: $color-bg; }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: $color-text-muted;
+  border-color: transparent;
+  height: auto;
+  padding: $space-1 $space-2;
+
+  &:hover {
+    background: $color-bg;
+    color: $color-text;
+  }
+}

@@ -1,0 +1,26 @@
+// =============================================================
+// GlitchRadar — Main SCSS Entry
+//
+// Each partial declares its own @use dependencies.
+// This file just sets the compilation order.
+// =============================================================
+
+// 1. Tokens — $variables + :root CSS custom properties
+@use 'variables';
+
+// 2. Base reset & global element styles
+@use 'reset';
+
+// 3. App shell
+@use 'layout';
+
+// 4. Components
+@use 'buttons';
+@use 'forms';
+@use 'tables';
+@use 'badges';
+@use 'modals';
+
+// 5. Feature-specific
+@use 'log-terminal';
+@use 'uptime';

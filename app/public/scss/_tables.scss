@@ -1,0 +1,46 @@
+@use 'variables' as *;
+
+// =============================================================
+// Data Table & Card surface
+// =============================================================
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-md;
+
+  th {
+    font-family: $font-primary;
+    font-weight: 500;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-text-muted;
+    text-align: left;
+    padding: $space-2 $space-3;
+    border-bottom: 1px solid $color-border;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: $space-3;
+    border-bottom: 1px solid $color-border;
+    vertical-align: middle;
+  }
+
+  tbody {
+    tr:last-child td { border-bottom: none; }
+
+    tr:hover td {
+      background: $color-bg;
+      cursor: pointer;
+    }
+  }
+}
+
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  overflow: hidden;
+}

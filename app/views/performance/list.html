@@ -1,5 +1,5 @@
 <!-- Filter bar -->
-<div class="flex flex-wrap items-center gap-2 mb-4">
+<div class="filter-bar">
   <select id="env-filter" class="form-select">
     <option value="">All environments</option>
     <option value="production">production</option>
@@ -7,8 +7,8 @@
     <option value="development">development</option>
   </select>
 
-  <div class="flex items-center gap-1 ml-auto">
-    <span class="text-xs mr-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Sort by</span>
+  <div class="filter-bar-right">
+    <span class="filter-label">Sort by</span>
     <select id="sort-filter" class="form-select">
       <option value="slowest">Slowest</option>
       <option value="fastest">Fastest</option>
@@ -17,20 +17,18 @@
 </div>
 
 <!-- Table -->
-<div class="bg-white rounded border" style="border-color:var(--color-border)">
+<div class="card">
   <table class="data-table" id="groups-table">
     <thead>
       <tr>
         <th>Title</th>
         <th style="width:140px">Project</th>
-        <th style="width:120px;text-align:right">Transactions</th>
+        <th style="width:130px;text-align:right">Transactions</th>
         <th style="width:140px;text-align:right">Avg Duration</th>
       </tr>
     </thead>
     <tbody id="groups-tbody">
-      <tr id="loading-row">
-        <td colspan="4" class="text-center py-10" style="color:var(--color-text-muted)">Loading…</td>
-      </tr>
+      <tr><td colspan="4" class="text-center py-10" style="color:var(--color-text-muted)">Loading…</td></tr>
     </tbody>
   </table>
 </div>

@@ -1,0 +1,63 @@
+@use 'variables' as *;
+
+// =============================================================
+// Log Terminal Viewer
+// =============================================================
+
+$terminal-bg:   #0F172A;
+$terminal-text: #CBD5E1;
+
+.log-terminal {
+  background: $terminal-bg;
+  border-radius: $radius;
+  padding: $space-4;
+  overflow-y: auto;
+  font-family: $font-mono;
+  font-size: $font-size-md;
+  line-height: 1.6;
+  color: $terminal-text;
+}
+
+.log-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+  &:hover { background: rgba(255, 255, 255, 0.04); }
+}
+
+.log-timestamp {
+  color: #475569;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: $font-size-xs;
+}
+
+.log-level {
+  flex-shrink: 0;
+  width: 44px;
+  font-weight: 700;
+  font-size: $font-size-xs;
+  letter-spacing: 0.03em;
+}
+
+// Generate level colour classes from the map
+$log-levels: (
+  FATAL: $color-log-fatal,
+  ERROR: $color-log-error,
+  WARN:  $color-log-warn,
+  INFO:  $color-log-info,
+  DEBUG: $color-log-debug,
+);
+
+@each $level, $color in $log-levels {
+  .log-level-#{$level} { color: $color; }
+}
+
+.log-message {
+  color: #E2E8F0;
+  word-break: break-all;
+  flex: 1;
+}

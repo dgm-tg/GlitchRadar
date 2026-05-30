@@ -14,34 +14,68 @@
    Design Tokens
    ============================================================= */
 :root {
+  /* Typography */
   --font-primary: 'Zalando Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
+  --font-size-xs:  0.6875rem; /* 11px — badges, secondary labels */
+  --font-size-sm:  0.75rem;   /* 12px — labels, captions */
+  --font-size-md:  0.8125rem; /* 13px — body, table cells, inputs */
+  --font-size-base:0.875rem;  /* 14px — default prose */
+  --font-size-lg:  1rem;      /* 16px — subheadings */
+  --font-size-xl:  1.125rem;  /* 18px — page title */
+
+  /* Spacing scale (4px base unit) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Brand */
   --color-brand: #C1121F;
   --color-brand-dark: #9B0D17;
   --color-brand-light: #E63946;
 
-  --color-bg: #F9FAFB;
-  --color-surface: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-text: #111827;
-  --color-text-muted: #6B7280;
+  /* Surfaces */
+  --color-bg:       #F3F4F6;
+  --color-surface:  #FFFFFF;
+  --color-input-bg: #F9FAFB;
 
-  --color-sidebar-bg: #111827;
-  --color-sidebar-icon: #9CA3AF;
+  /* Borders */
+  --color-border:       #D1D5DB; /* slightly darker — visible on white */
+  --color-border-focus: #C1121F;
+
+  /* Text */
+  --color-text:        #111827;
+  --color-text-muted:  #6B7280;
+  --color-text-subtle: #9CA3AF;
+  --color-placeholder: #9CA3AF;
+
+  /* Sidebar */
+  --color-sidebar-bg:          #111827;
+  --color-sidebar-icon:        #9CA3AF;
   --color-sidebar-icon-active: #FFFFFF;
 
+  /* Log levels */
   --color-log-fatal: #EF4444;
   --color-log-error: #F97316;
-  --color-log-warn: #EAB308;
-  --color-log-info: #3B82F6;
+  --color-log-warn:  #EAB308;
+  --color-log-info:  #3B82F6;
   --color-log-debug: #6B7280;
 
-  --color-up: #22C55E;
+  /* Status */
+  --color-up:   #22C55E;
   --color-down: #EF4444;
 
-  --radius: 0.375rem;
+  /* Misc */
+  --radius:        0.375rem;
+  --radius-lg:     0.5rem;
   --sidebar-width: 56px;
+  --topbar-height: 56px;
+  --input-height:  36px;
 }
 
 /* =============================================================
@@ -174,20 +208,23 @@ a {
    Common Components
    ============================================================= */
 
-/* Buttons */
+/* ── Buttons ─────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-3);
+  height: var(--input-height);
   border-radius: var(--radius);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-md);
   font-weight: 500;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .btn-primary {
@@ -195,7 +232,8 @@ a {
   color: #fff;
   border-color: var(--color-brand);
 }
-.btn-primary:hover { background: var(--color-brand-dark); border-color: var(--color-brand-dark); }
+.btn-primary:hover  { background: var(--color-brand-dark); border-color: var(--color-brand-dark); }
+.btn-primary:active { background: var(--color-brand-dark); }
 
 .btn-secondary {
   background: var(--color-surface);
@@ -208,66 +246,158 @@ a {
   background: transparent;
   color: var(--color-text-muted);
   border-color: transparent;
+  height: auto;
+  padding: var(--space-1) var(--space-2);
 }
 .btn-ghost:hover { background: var(--color-bg); color: var(--color-text); }
 
-/* Select / Input */
+/* ── Form primitives ─────────────────────────────────────────── */
+
+/* Label */
+.form-label {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+  letter-spacing: 0.01em;
+}
+
+/* Input / Select */
 .form-select,
 .form-input {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  padding: 6px 10px;
+  font-size: var(--font-size-md);
+  height: var(--input-height);
+  padding: 0 var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  background: var(--color-surface);
+  background: var(--color-input-bg);
   color: var(--color-text);
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
 }
+.form-select {
+  width: auto;
+  padding-right: var(--space-6);
+  cursor: pointer;
+}
+.form-input::placeholder  { color: var(--color-placeholder); }
 .form-select:focus,
 .form-input:focus {
-  border-color: var(--color-brand);
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.08);
 }
 
-/* Table */
+/* Form group (label + input pair) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Vertical form stack */
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Alert / inline error ────────────────────────────────────── */
+.alert-error {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--font-size-md);
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+/* ── Modal card ──────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 448px;
+  padding: var(--space-6);
+}
+
+.modal-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+/* ── Table ───────────────────────────────────────────────────── */
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8125rem;
+  font-size: var(--font-size-md);
 }
 
 .data-table th {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--color-text-muted);
   text-align: left;
-  padding: 10px 12px;
+  padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 
 .data-table td {
-  padding: 12px 12px;
+  padding: var(--space-3);
   border-bottom: 1px solid var(--color-border);
   vertical-align: middle;
 }
 
-.data-table tr:hover td {
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.data-table tbody tr:hover td {
   background: var(--color-bg);
   cursor: pointer;
 }
 
-/* Status badges */
+/* ── Card / surface container ────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ── Status badges ───────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2px var(--space-2);
   border-radius: 9999px;
-  font-size: 0.6875rem;
-  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -282,6 +412,30 @@ a {
 .badge-warn  { background: #FEF9C3; color: #854D0E; }
 .badge-info  { background: #DBEAFE; color: #1E40AF; }
 .badge-debug { background: #F3F4F6; color: #6B7280; }
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.empty-state-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.empty-state-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
 
 /* =============================================================
    Log Terminal Viewer

@@ -1,5 +1,4 @@
 <div class="w-full max-w-sm px-4">
-  <!-- Logo -->
   <div class="flex justify-center mb-8">
     <svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="28" height="28" rx="6" fill="#C1121F"/>
@@ -7,35 +6,35 @@
     </svg>
   </div>
 
-  <h1 class="font-heading text-2xl font-semibold text-center mb-1" style="color:var(--color-text)">Create your account</h1>
-  <p class="text-center text-sm mb-8" style="color:var(--color-text-muted)">
+  <h1 class="font-heading text-center font-semibold mb-1" style="font-size:var(--font-size-xl);color:var(--color-text)">Create your account</h1>
+  <p class="text-center mb-8" style="font-size:var(--font-size-md);color:var(--color-text-muted)">
     Already have an account? <a href="/auth/login" style="color:var(--color-brand)" class="hover:underline">Sign in</a>
   </p>
 
-  <div id="error-msg" class="hidden mb-4 px-4 py-3 rounded text-sm" style="background:#FEE2E2;color:#991B1B;border:1px solid #FECACA"></div>
+  <div id="error-msg" class="alert-error hidden mb-4"></div>
 
-  <form id="signup-form" class="flex flex-col gap-4">
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Your name</label>
+  <form id="signup-form" class="form-stack">
+    <div class="form-group">
+      <label class="form-label">Your name</label>
       <input type="text" name="name" required autocomplete="name"
-        class="form-input w-full" placeholder="Jane Smith" />
+        class="form-input" placeholder="Jane Smith" />
     </div>
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Work email</label>
+    <div class="form-group">
+      <label class="form-label">Work email</label>
       <input type="email" name="email" required autocomplete="email"
-        class="form-input w-full" placeholder="jane@company.com" />
+        class="form-input" placeholder="jane@company.com" />
     </div>
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Password</label>
+    <div class="form-group">
+      <label class="form-label">Password</label>
       <input type="password" name="password" required autocomplete="new-password" minlength="8"
-        class="form-input w-full" placeholder="Min. 8 characters" />
+        class="form-input" placeholder="Min. 8 characters" />
     </div>
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Organization name</label>
+    <div class="form-group">
+      <label class="form-label">Organization name</label>
       <input type="text" name="orgName" required
-        class="form-input w-full" placeholder="Acme Corp" />
+        class="form-input" placeholder="Acme Corp" />
     </div>
-    <button type="submit" class="btn btn-primary w-full justify-center mt-1" id="submit-btn">
+    <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;margin-top:var(--space-1)">
       Create account
     </button>
   </form>
