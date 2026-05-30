@@ -1,0 +1,60 @@
+<div class="flex items-center justify-between mb-6">
+  <div></div>
+  <button class="btn btn-primary" onclick="document.getElementById('new-project-modal').classList.remove('hidden')">
+    + New project
+  </button>
+</div>
+
+{{#if projects.length}}
+<div class="bg-white rounded border" style="border-color:var(--color-border)">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>API Key</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="projects-tbody">
+      {{#each projects}}
+      <tr>
+        <td class="font-medium" style="font-family:var(--font-primary)">{{this.name}}</td>
+        <td>
+          <code class="text-xs px-2 py-1 rounded" style="background:var(--color-bg);font-family:var(--font-mono)">{{this.api_key}}</code>
+        </td>
+        <td style="color:var(--color-text-muted)">{{this.created_at}}</td>
+        <td class="text-right">
+          <button class="btn btn-ghost text-xs" onclick="deleteProject({{this.id}}, this)">Delete</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+<div class="text-center py-16" style="color:var(--color-text-muted)">
+  <p class="font-heading text-lg font-medium mb-1" style="color:var(--color-text)">No projects yet</p>
+  <p class="text-sm">Create a project to get your API key and start sending data.</p>
+</div>
+{{/if}}
+
+<!-- New project modal -->
+<div id="new-project-modal" class="hidden fixed inset-0 flex items-center justify-center z-50" style="background:rgba(0,0,0,0.4)">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+    <h2 class="font-heading text-lg font-semibold mb-4">New project</h2>
+    <div id="modal-error" class="hidden mb-4 px-4 py-3 rounded text-sm" style="background:#FEE2E2;color:#991B1B"></div>
+    <form id="new-project-form" class="flex flex-col gap-4">
+      <div>
+        <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Project name</label>
+        <input type="text" name="name" required class="form-input w-full" placeholder="my-api" />
+      </div>
+      <div class="flex gap-2 justify-end">
+        <button type="button" class="btn btn-secondary" onclick="document.getElementById('new-project-modal').classList.add('hidden')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/projects.js"></script>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ctrl = require('../controllers/orgController');
 
-router.post('/invite', ctrl.inviteMember);
+router.get('/:token',  ctrl.showInvite);
+router.post('/:token', ctrl.acceptInvite);
 
 module.exports = router;
