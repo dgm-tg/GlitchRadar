@@ -1,0 +1,131 @@
+@use 'variables' as *;
+
+// =============================================================
+// Form primitives — inputs, labels, groups
+// =============================================================
+
+// ── Label ─────────────────────────────────────────────────────
+
+.form-label {
+  display: block;
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $color-text-muted;
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+}
+
+// ── Shared control styles (placeholder — same-file extend only) ─
+
+%form-control-base {
+  font-family: $font-mono;
+  font-size: $font-size-md;
+  height: $input-height;
+  padding: 0 $space-3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-input-bg;
+  color: $color-text;
+  outline: none;
+  transition: border-color $transition, box-shadow $transition;
+
+  &::placeholder { color: $color-placeholder; }
+
+  &:focus {
+    border-color: $color-border-focus;
+    box-shadow: 0 0 0 3px rgba($color-brand, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: $color-bg;
+  }
+}
+
+// ── Input ─────────────────────────────────────────────────────
+
+.form-input {
+  @extend %form-control-base;
+  width: 100%;
+  display: block;
+}
+
+// ── Select ────────────────────────────────────────────────────
+
+.form-select {
+  @extend %form-control-base;
+  width: auto;
+  padding-right: $space-6;
+  cursor: pointer;
+  appearance: none;
+  // Inline chevron so no external image dependency
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-color: $color-input-bg;
+}
+
+// ── Input with leading icon ───────────────────────────────────
+// Usage:
+//   <div class="input-icon-wrap">
+//     <span class="input-icon"><svg …/></span>
+//     <input class="form-input-icon" …/>
+//   </div>
+
+$_icon-size:   14px;
+$_icon-offset: $space-3; // distance from left edge to icon
+
+.input-icon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: $_icon-offset;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $color-placeholder;
+  display: flex;
+  align-items: center;
+  line-height: 0; // remove inline-block descender gap
+}
+
+.form-input-icon {
+  @extend %form-control-base;
+  width: 100%;
+  display: block;
+  // left padding = icon offset + icon width + gap between icon and text
+  padding-left: $_icon-offset + $_icon-size + $space-2;
+}
+
+// ── Form group (label + control pair) ────────────────────────
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+// ── Form stack (vertical list of groups) ─────────────────────
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+// ── Inline alert ──────────────────────────────────────────────
+
+.alert-error {
+  padding: $space-3 $space-4;
+  border-radius: $radius;
+  font-size: $font-size-md;
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}

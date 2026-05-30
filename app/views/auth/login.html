@@ -1,5 +1,4 @@
 <div class="w-full max-w-sm px-4">
-  <!-- Logo -->
   <div class="flex justify-center mb-8">
     <svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="28" height="28" rx="6" fill="#C1121F"/>
@@ -7,25 +6,25 @@
     </svg>
   </div>
 
-  <h1 class="font-heading text-2xl font-semibold text-center mb-1" style="color:var(--color-text)">Sign in to GlitchRadar</h1>
-  <p class="text-center text-sm mb-8" style="color:var(--color-text-muted)">
-    Don't have an account? <a href="/auth/signup" style="color:var(--color-brand)" class="hover:underline">Sign up</a>
+  <h1 class="font-heading text-center font-semibold mb-1" style="font-size:var(--font-size-xl);color:var(--color-text)">Sign in to GlitchRadar</h1>
+  <p class="text-center mb-8" style="font-size:var(--font-size-md);color:var(--color-text-muted)">
+    No account? <a href="/auth/signup" style="color:var(--color-brand)" class="hover:underline">Sign up</a>
   </p>
 
-  <div id="error-msg" class="hidden mb-4 px-4 py-3 rounded text-sm" style="background:#FEE2E2;color:#991B1B;border:1px solid #FECACA"></div>
+  <div id="error-msg" class="alert-error hidden mb-4"></div>
 
-  <form id="login-form" class="flex flex-col gap-4">
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Email</label>
+  <form id="login-form" class="form-stack">
+    <div class="form-group">
+      <label class="form-label">Email</label>
       <input type="email" name="email" required autocomplete="email"
-        class="form-input w-full" placeholder="you@example.com" />
+        class="form-input" placeholder="you@example.com" />
     </div>
-    <div>
-      <label class="block text-xs font-medium mb-1" style="color:var(--color-text-muted);font-family:var(--font-primary)">Password</label>
+    <div class="form-group">
+      <label class="form-label">Password</label>
       <input type="password" name="password" required autocomplete="current-password"
-        class="form-input w-full" placeholder="••••••••" />
+        class="form-input" placeholder="••••••••" />
     </div>
-    <button type="submit" class="btn btn-primary w-full justify-center mt-1" id="submit-btn">
+    <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;margin-top:var(--space-1)">
       Sign in
     </button>
   </form>

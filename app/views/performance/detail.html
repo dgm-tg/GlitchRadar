@@ -29,7 +29,7 @@
   </div>
 
   <!-- Samples table -->
-  <div class="bg-white rounded border" style="border-color:var(--color-border)">
+  <div class="card">
     <table class="data-table">
       <thead>
         <tr>
@@ -47,11 +47,11 @@
   </div>
 
   <!-- Pagination -->
-  <div class="flex items-center justify-between mt-4 text-xs" style="color:var(--color-text-muted)">
+  <div id="pagination" class="pagination">
     <span id="page-info"></span>
-    <div class="flex gap-2">
-      <button id="prev-btn" class="btn btn-secondary text-xs" disabled>← Previous</button>
-      <button id="next-btn" class="btn btn-secondary text-xs" disabled>Next →</button>
+    <div class="pagination-buttons">
+      <button id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+      <button id="next-btn" class="btn btn-secondary" disabled>Next →</button>
     </div>
   </div>
 </div>

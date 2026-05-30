@@ -1,0 +1,45 @@
+@use 'sass:list';
+@use 'variables' as *;
+
+// =============================================================
+// Badges
+// =============================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px $space-2;
+  border-radius: 9999px;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  font-family: $font-mono;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+// ── Issue status ──────────────────────────────────────────────
+.badge-unresolved { background: #FEE2E2; color: #991B1B; }
+.badge-resolved   { background: #DCFCE7; color: #166534; }
+.badge-ignored    { background: #F3F4F6; color: #6B7280; }
+
+// ── Log levels (generated from map) ──────────────────────────
+$log-badges: (
+  fatal: (#FEE2E2, #991B1B),
+  error: (#FFEDD5, #9A3412),
+  warn:  (#FEF9C3, #854D0E),
+  info:  (#DBEAFE, #1E40AF),
+  debug: (#F3F4F6, #6B7280),
+);
+
+@each $name, $colors in $log-badges {
+  .badge-#{$name} {
+    background: list.nth($colors, 1);
+    color:      list.nth($colors, 2);
+  }
+}
+
+// ── HTTP status codes ─────────────────────────────────────────
+.badge-2xx { background: #DCFCE7; color: #166534; }
+.badge-4xx { background: #FEF9C3; color: #854D0E; }
+.badge-5xx { background: #FEE2E2; color: #991B1B; }

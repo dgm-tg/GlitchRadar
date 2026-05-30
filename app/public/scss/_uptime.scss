@@ -1,0 +1,59 @@
+@use 'variables' as *;
+
+// =============================================================
+// Uptime — timeline bar, sparkline, empty state
+// =============================================================
+
+// ── Timeline bar ──────────────────────────────────────────────
+
+.timeline-bar {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  height: 28px;
+}
+
+.timeline-segment {
+  height: 100%;
+  border-radius: 2px;
+  flex: 1;
+  min-width: 4px;
+  transition: opacity $transition;
+
+  &:hover { opacity: 0.8; }
+  &.up    { background: $color-up; }
+  &.down  { background: $color-down; }
+}
+
+// ── Sparkline ─────────────────────────────────────────────────
+
+.sparkline {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+// ── Empty state ───────────────────────────────────────────────
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-8 $space-6;
+  text-align: center;
+}
+
+.empty-state-title {
+  font-family: $font-primary;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: $space-1;
+}
+
+.empty-state-desc {
+  font-size: $font-size-md;
+  color: $color-text-muted;
+  margin-bottom: $space-4;
+}

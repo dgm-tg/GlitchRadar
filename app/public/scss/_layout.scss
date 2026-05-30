@@ -1,0 +1,167 @@
+@use 'variables' as *;
+
+// =============================================================
+// App Shell — sidebar, topbar, main content area
+// =============================================================
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// ── Sidebar ───────────────────────────────────────────────────
+
+.sidebar {
+  width: $sidebar-width;
+  background: $color-sidebar-bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-3 0;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.sidebar-logo {
+  width: 32px;
+  height: 32px;
+  margin-bottom: $space-6;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  width: 100%;
+  padding: 0 $space-2;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius;
+  color: $color-sidebar-icon;
+  transition: background $transition, color $transition;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: $color-sidebar-icon-active;
+  }
+
+  &.active {
+    background: $color-brand;
+    color: $color-sidebar-icon-active;
+  }
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  padding: 0 $space-2 $space-2;
+  width: 100%;
+}
+
+// ── Main content ──────────────────────────────────────────────
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+// ── Top bar ───────────────────────────────────────────────────
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $space-6;
+  height: $topbar-height;
+  border-bottom: 1px solid $color-border;
+  background: $color-surface;
+  flex-shrink: 0;
+}
+
+.topbar-title {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+// ── Page content ──────────────────────────────────────────────
+
+.page-content {
+  padding: $space-8 $space-6 $space-6;
+  flex: 1;
+}
+
+// ── Filter bar ────────────────────────────────────────────────
+// Standardized row of filter controls above a table or feed.
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;          // 12px between controls
+  margin-bottom: $space-5; // 20px gap to the content below
+}
+
+.filter-bar-right {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-left: auto;
+}
+
+.filter-label {
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  white-space: nowrap;
+}
+
+// ── Pagination row ────────────────────────────────────────────
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $space-4;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: $space-2;
+}
+
+// ── Bulk toolbar ──────────────────────────────────────────────
+
+.bulk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-3;
+  padding: $space-2 $space-3;
+  border-radius: $radius;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
