@@ -112,14 +112,14 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 3.12 Add bulk action handling in `public/js/issues.js` — track checked checkboxes, enable/disable toolbar buttons, send `POST /issues/bulk` on button click, re-render the list
   - [x] 3.13 Create `public/js/issue-detail.js` — fetch `GET /issues/:id`, render stack trace with syntax-friendly formatting, render event history list with timestamps and metadata
 
-- [ ] 4.0 Logs
-  - [ ] 4.1 Add schema to `db/schema.sql` for table: `logs` (project_id, timestamp, level, message, service, metadata); add composite index on `(project_id, timestamp, level)`
-  - [ ] 4.2 Build `POST /api/v1/logs` (API key protected) — validate payload (level must be one of FATAL, ERROR, WARN, INFO, DEBUG), insert log entry
-  - [ ] 4.3 Build `GET /logs` — cursor-based paginated log feed for the current org; filterable by `level`, `service`, `projectId`, `timeRange`; supports keyword search on `message`; returns a `nextCursor` for the next page
-  - [ ] 4.4 Build `GET /logs/services` — return list of distinct `service` values for the current org (used to populate the Service filter dropdown)
-  - [ ] 4.5 Create `views/logs/index.html` — dark terminal-style log feed panel; filter bar above with Level dropdown, Service dropdown, and search input; "Load more" button at the bottom
-  - [ ] 4.6 Create `public/js/logs.js` — on page load fetch first page of logs; render each entry as a row with timestamp, color-coded level badge (FATAL/ERROR = red, WARN = yellow, INFO = blue, DEBUG = gray), and message; populate Service dropdown from `GET /logs/services`
-  - [ ] 4.7 Add filter and search handling in `public/js/logs.js` — re-fetch from the top when filters change; implement "Load more" button that appends the next cursor page to the existing feed without clearing it
+- [x] 4.0 Logs
+  - [x] 4.1 Add schema to `db/schema.sql` for table: `logs` (project_id, timestamp, level, message, service, metadata); add composite index on `(project_id, timestamp, level)`
+  - [x] 4.2 Build `POST /api/v1/logs` (API key protected) — validate payload (level must be one of FATAL, ERROR, WARN, INFO, DEBUG), insert log entry
+  - [x] 4.3 Build `GET /logs` — cursor-based paginated log feed for the current org; filterable by `level`, `service`, `projectId`, `timeRange`; supports keyword search on `message`; returns a `nextCursor` for the next page
+  - [x] 4.4 Build `GET /logs/services` — return list of distinct `service` values for the current org (used to populate the Service filter dropdown)
+  - [x] 4.5 Create `views/logs/index.html` — dark terminal-style log feed panel; filter bar above with Level dropdown, Service dropdown, and search input; "Load more" button at the bottom
+  - [x] 4.6 Create `public/js/logs.js` — on page load fetch first page of logs; render each entry as a row with timestamp, color-coded level badge (FATAL/ERROR = red, WARN = yellow, INFO = blue, DEBUG = gray), and message; populate Service dropdown from `GET /logs/services`
+  - [x] 4.7 Add filter and search handling in `public/js/logs.js` — re-fetch from the top when filters change; implement "Load more" button that appends the next cursor page to the existing feed without clearing it
 
 - [ ] 5.0 Performance Monitoring
   - [ ] 5.1 Add schema to `db/schema.sql` for table: `transactions` (project_id, name, http_method, duration_ms, status_code, environment, timestamp); add index on `(project_id, name)`
