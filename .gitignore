@@ -1,0 +1,7 @@
+node_modules/
+app/db/glitchradar.db
+app/db/glitchradar.db-shm
+app/db/glitchradar.db-wal
+app/public/css/output.css
+.env
+.DS_Store
