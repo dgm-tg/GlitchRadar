@@ -1,0 +1,59 @@
+<div id="perf-detail">
+  <!-- Back link + header -->
+  <div class="flex items-center gap-3 mb-6">
+    <a href="/transactions" class="btn btn-ghost text-xs">← Back</a>
+    <div>
+      <h2 id="detail-name" class="font-heading text-lg font-semibold" style="color:var(--color-text)"></h2>
+      <p id="detail-meta" class="text-xs mt-0.5" style="color:var(--color-text-muted)"></p>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="flex gap-6 mb-6 p-4 rounded border" style="border-color:var(--color-border);background:var(--color-bg)">
+    <div>
+      <div class="text-xs mb-0.5" style="color:var(--color-text-muted);font-family:var(--font-primary)">Avg Duration</div>
+      <div id="stat-avg" class="font-heading text-xl font-semibold" style="color:var(--color-text)">—</div>
+    </div>
+    <div>
+      <div class="text-xs mb-0.5" style="color:var(--color-text-muted);font-family:var(--font-primary)">Slowest</div>
+      <div id="stat-max" class="font-heading text-xl font-semibold" style="color:var(--color-text)">—</div>
+    </div>
+    <div>
+      <div class="text-xs mb-0.5" style="color:var(--color-text-muted);font-family:var(--font-primary)">Fastest</div>
+      <div id="stat-min" class="font-heading text-xl font-semibold" style="color:var(--color-text)">—</div>
+    </div>
+    <div>
+      <div class="text-xs mb-0.5" style="color:var(--color-text-muted);font-family:var(--font-primary)">Total</div>
+      <div id="stat-total" class="font-heading text-xl font-semibold" style="color:var(--color-text)">—</div>
+    </div>
+  </div>
+
+  <!-- Samples table -->
+  <div class="bg-white rounded border" style="border-color:var(--color-border)">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th style="width:100px">Method</th>
+          <th style="width:120px;text-align:right">Duration</th>
+          <th style="width:100px;text-align:center">Status</th>
+          <th style="width:120px">Environment</th>
+        </tr>
+      </thead>
+      <tbody id="samples-tbody">
+        <tr><td colspan="5" class="text-center py-10" style="color:var(--color-text-muted)">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex items-center justify-between mt-4 text-xs" style="color:var(--color-text-muted)">
+    <span id="page-info"></span>
+    <div class="flex gap-2">
+      <button id="prev-btn" class="btn btn-secondary text-xs" disabled>← Previous</button>
+      <button id="next-btn" class="btn btn-secondary text-xs" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/performance-detail.js"></script>

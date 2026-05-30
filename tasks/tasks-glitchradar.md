@@ -121,15 +121,15 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 4.6 Create `public/js/logs.js` — on page load fetch first page of logs; render each entry as a row with timestamp, color-coded level badge (FATAL/ERROR = red, WARN = yellow, INFO = blue, DEBUG = gray), and message; populate Service dropdown from `GET /logs/services`
   - [x] 4.7 Add filter and search handling in `public/js/logs.js` — re-fetch from the top when filters change; implement "Load more" button that appends the next cursor page to the existing feed without clearing it
 
-- [ ] 5.0 Performance Monitoring
-  - [ ] 5.1 Add schema to `db/schema.sql` for table: `transactions` (project_id, name, http_method, duration_ms, status_code, environment, timestamp); add index on `(project_id, name)`
-  - [ ] 5.2 Build `POST /api/v1/transactions` (API key protected) — validate payload, insert transaction record
-  - [ ] 5.3 Build `GET /transactions/groups` — group transactions by `name`, return each group with: name, project, transaction count, and average duration; filterable by `environment`, `projectId`; sortable by `avg_duration` (default: slowest first)
-  - [ ] 5.4 Build `GET /transactions` — return individual transaction records for a given `name` (used for the detail view); paginated
-  - [ ] 5.5 Create `views/performance/list.html` — transaction groups table with columns: Title, Project, Transactions, Avg Duration; Sort By dropdown (Slowest / Fastest); Environment and Project filters
-  - [ ] 5.6 Create `views/performance/detail.html` — detail view for a transaction group showing individual transaction samples in a table (timestamp, duration, status code, environment)
-  - [ ] 5.7 Create `public/js/performance.js` — on page load fetch `GET /transactions/groups`; render table rows; wire up sort and filter controls to re-fetch; clicking a row navigates to the detail page
-  - [ ] 5.8 Create `public/js/performance-detail.js` — read group name from the URL, fetch `GET /transactions`, render the samples table with pagination
+- [x] 5.0 Performance Monitoring
+  - [x] 5.1 Add schema to `db/schema.sql` for table: `transactions` (project_id, name, http_method, duration_ms, status_code, environment, timestamp); add index on `(project_id, name)`
+  - [x] 5.2 Build `POST /api/v1/transactions` (API key protected) — validate payload, insert transaction record
+  - [x] 5.3 Build `GET /transactions/groups` — group transactions by `name`, return each group with: name, project, transaction count, and average duration; filterable by `environment`, `projectId`; sortable by `avg_duration` (default: slowest first)
+  - [x] 5.4 Build `GET /transactions` — return individual transaction records for a given `name` (used for the detail view); paginated
+  - [x] 5.5 Create `views/performance/list.html` — transaction groups table with columns: Title, Project, Transactions, Avg Duration; Sort By dropdown (Slowest / Fastest); Environment and Project filters
+  - [x] 5.6 Create `views/performance/detail.html` — detail view for a transaction group showing individual transaction samples in a table (timestamp, duration, status code, environment)
+  - [x] 5.7 Create `public/js/performance.js` — on page load fetch `GET /transactions/groups`; render table rows; wire up sort and filter controls to re-fetch; clicking a row navigates to the detail page
+  - [x] 5.8 Create `public/js/performance-detail.js` — read group name from the URL, fetch `GET /transactions`, render the samples table with pagination
 
 - [ ] 6.0 Uptime Monitoring
   - [ ] 6.1 Add schema to `db/schema.sql` for tables: `monitors` (org_id, name, url, interval_seconds, webhook_url, last_status, last_checked_at) and `ping_results` (monitor_id, status, response_time_ms, http_status_code, timestamp); add index on `(monitor_id, timestamp)`
