@@ -1,0 +1,64 @@
+<!-- Filter bar -->
+<div class="flex flex-wrap items-center gap-2 mb-4">
+  <input id="search-input" type="text" placeholder="Search issues…" class="form-input" style="width:220px" />
+  <select id="env-filter" class="form-select">
+    <option value="">All environments</option>
+    <option value="production">production</option>
+    <option value="staging">staging</option>
+    <option value="development">development</option>
+  </select>
+  <select id="time-filter" class="form-select">
+    <option value="">All time</option>
+    <option value="24h">Last 24h</option>
+    <option value="14d">Last 14 days</option>
+  </select>
+  <select id="sort-filter" class="form-select">
+    <option value="last_seen">Last seen</option>
+    <option value="first_seen">First seen</option>
+    <option value="event_count">Events</option>
+  </select>
+  <div class="flex gap-1 ml-auto">
+    <button data-status="unresolved" class="btn btn-secondary status-tab active-tab text-xs">Unresolved</button>
+    <button data-status="resolved"   class="btn btn-secondary status-tab text-xs">Resolved</button>
+    <button data-status="ignored"    class="btn btn-secondary status-tab text-xs">Ignored</button>
+  </div>
+</div>
+
+<!-- Bulk action toolbar (hidden until rows are checked) -->
+<div id="bulk-toolbar" class="hidden flex items-center gap-2 mb-3 px-3 py-2 rounded" style="background:var(--color-bg);border:1px solid var(--color-border)">
+  <span id="selected-count" class="text-xs mr-2" style="color:var(--color-text-muted)"></span>
+  <button id="bulk-resolve"   class="btn btn-secondary text-xs">Mark resolved</button>
+  <button id="bulk-unresolve" class="btn btn-secondary text-xs">Mark unresolved</button>
+  <button id="bulk-ignore"    class="btn btn-secondary text-xs">Mark ignored</button>
+  <button id="bulk-merge"     class="btn btn-secondary text-xs">Merge</button>
+</div>
+
+<!-- Table -->
+<div class="bg-white rounded border" style="border-color:var(--color-border)">
+  <table class="data-table" id="issues-table">
+    <thead>
+      <tr>
+        <th style="width:36px"><input type="checkbox" id="select-all" /></th>
+        <th>Issue</th>
+        <th style="width:160px">Trend</th>
+        <th style="width:80px;text-align:right">Events</th>
+      </tr>
+    </thead>
+    <tbody id="issues-tbody">
+      <tr id="loading-row">
+        <td colspan="4" class="text-center py-10" style="color:var(--color-text-muted)">Loading…</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<div id="pagination" class="flex items-center justify-between mt-4 text-xs" style="color:var(--color-text-muted)">
+  <span id="page-info"></span>
+  <div class="flex gap-2">
+    <button id="prev-btn" class="btn btn-secondary text-xs" disabled>← Previous</button>
+    <button id="next-btn" class="btn btn-secondary text-xs" disabled>Next →</button>
+  </div>
+</div>
+
+<script src="/js/issues.js"></script>

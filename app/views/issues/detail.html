@@ -1,0 +1,56 @@
+<div id="issue-detail" data-id="{{issueId}}">
+  <!-- Header skeleton filled by JS -->
+  <div id="issue-header" class="mb-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span id="issue-status-badge" class="badge"></span>
+          <span id="issue-project" class="text-xs" style="color:var(--color-text-muted)"></span>
+          <span id="issue-env"     class="text-xs" style="color:var(--color-text-muted)"></span>
+        </div>
+        <h2 id="issue-title" class="font-heading text-xl font-semibold" style="color:var(--color-text)"></h2>
+      </div>
+      <div class="flex gap-2 flex-shrink-0">
+        <button id="btn-resolve" class="btn btn-secondary text-xs">Mark resolved</button>
+        <button id="btn-ignore"  class="btn btn-secondary text-xs">Mark ignored</button>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="flex gap-6 mt-4 text-xs" style="color:var(--color-text-muted)">
+      <span>Events: <strong id="stat-count" style="color:var(--color-text)"></strong></span>
+      <span>First seen: <strong id="stat-first" style="color:var(--color-text)"></strong></span>
+      <span>Last seen: <strong id="stat-last"  style="color:var(--color-text)"></strong></span>
+    </div>
+  </div>
+
+  <!-- Latest stack trace -->
+  <div class="mb-6">
+    <h3 class="font-heading text-sm font-semibold mb-2" style="color:var(--color-text)">Stack trace</h3>
+    <pre id="stack-trace" class="p-4 rounded overflow-x-auto text-xs leading-relaxed"
+      style="background:#0F172A;color:#CBD5E1;font-family:var(--font-mono);white-space:pre-wrap;word-break:break-all">
+Loading…</pre>
+  </div>
+
+  <!-- Event history -->
+  <div>
+    <h3 class="font-heading text-sm font-semibold mb-2" style="color:var(--color-text)">Recent occurrences</h3>
+    <div class="bg-white rounded border" style="border-color:var(--color-border)">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Environment</th>
+            <th>Level</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody id="events-tbody">
+          <tr><td colspan="4" class="text-center py-8" style="color:var(--color-text-muted)">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="/js/issue-detail.js"></script>

@@ -83,34 +83,34 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 1.9 Create `views/layout.html` — base HTML shell with `<link>` for Google Fonts (Zalando Sans + JetBrains Mono), Tailwind `output.css`, `main.css`, left sidebar nav with icons for each module (Error Tracking, Logs, Performance, Uptime), and top-right project/org switcher placeholder
   - [x] 1.10 Add npm scripts to `package.json`: `"dev": "nodemon server.js"`, `"css:watch"`, `"css:build"` using `@tailwindcss/cli`
 
-- [ ] 2.0 Authentication & Multi-Tenancy
-  - [ ] 2.1 Add schema to `db/schema.sql` for tables: `users`, `organizations`, `org_members`, `projects`, `invites`
-  - [ ] 2.2 Build `POST /auth/signup` — create user (hashed password via bcrypt) and their organization in a single SQLite transaction; return session
-  - [ ] 2.3 Build `POST /auth/login` — validate credentials, create session with `userId` and `orgId`
-  - [ ] 2.4 Build `GET /auth/logout` — destroy session and redirect to login
-  - [ ] 2.5 Create `middleware/auth.js` — check for valid session; redirect unauthenticated requests to `/auth/login`
-  - [ ] 2.6 Create `middleware/apiKey.js` — read `X-API-Key` header, look up matching project, attach `projectId` and `orgId` to `req`; return 401 if invalid
-  - [ ] 2.7 Build `POST /org/invite` — generate a secure random invite token, store in `invites` table, send invite email via `services/email.js`
-  - [ ] 2.8 Build `GET /invite/:token` — render invite acceptance page; `POST /invite/:token` — create user + `org_member` record, expire the token
-  - [ ] 2.9 Build `POST /projects` — create a project for the current org, generate a UUID API key, store in `projects` table
-  - [ ] 2.10 Build `GET /projects` — list all projects for the current org
-  - [ ] 2.11 Create `views/auth/login.html`, `views/auth/signup.html`, `views/auth/invite.html` pages matching the GlitchRadar design (Zalando Sans headings, form inputs styled with Tailwind)
-  - [ ] 2.12 Create `public/js/auth.js` — handle signup and login form submission via `fetch`, display inline validation errors, redirect on success
+- [x] 2.0 Authentication & Multi-Tenancy
+  - [x] 2.1 Add schema to `db/schema.sql` for tables: `users`, `organizations`, `org_members`, `projects`, `invites`
+  - [x] 2.2 Build `POST /auth/signup` — create user (hashed password via bcrypt) and their organization in a single SQLite transaction; return session
+  - [x] 2.3 Build `POST /auth/login` — validate credentials, create session with `userId` and `orgId`
+  - [x] 2.4 Build `GET /auth/logout` — destroy session and redirect to login
+  - [x] 2.5 Create `middleware/auth.js` — check for valid session; redirect unauthenticated requests to `/auth/login`
+  - [x] 2.6 Create `middleware/apiKey.js` — read `X-API-Key` header, look up matching project, attach `projectId` and `orgId` to `req`; return 401 if invalid
+  - [x] 2.7 Build `POST /org/invite` — generate a secure random invite token, store in `invites` table, send invite email via `services/email.js`
+  - [x] 2.8 Build `GET /invite/:token` — render invite acceptance page; `POST /invite/:token` — create user + `org_member` record, expire the token
+  - [x] 2.9 Build `POST /projects` — create a project for the current org, generate a UUID API key, store in `projects` table
+  - [x] 2.10 Build `GET /projects` — list all projects for the current org
+  - [x] 2.11 Create `views/auth/login.html`, `views/auth/signup.html`, `views/auth/invite.html` pages matching the GlitchRadar design (Zalando Sans headings, form inputs styled with Tailwind)
+  - [x] 2.12 Create `public/js/auth.js` — handle signup and login form submission via `fetch`, display inline validation errors, redirect on success
 
-- [ ] 3.0 Error Tracking
-  - [ ] 3.1 Add schema to `db/schema.sql` for tables: `issues` (fingerprint, title, status, first_seen, last_seen, event_count) and `error_events` (issue_id, message, stack_trace, environment, level, metadata, timestamp)
-  - [ ] 3.2 Create `services/fingerprint.js` — normalize error message and extract top 5 stack frames, return a SHA-256 hash as the fingerprint
-  - [ ] 3.3 Build `POST /api/v1/errors` (API key protected) — validate payload, compute fingerprint, find or create issue, insert error event, increment event count and update `last_seen`
-  - [ ] 3.4 Build `GET /issues` — paginated issues list filterable by `status`, `environment`, `timeRange`; sortable by `last_seen`, `first_seen`, `event_count`; supports keyword search on title
-  - [ ] 3.5 Build `PATCH /issues/:id` — update a single issue's status (`resolved`, `unresolved`, `ignored`)
-  - [ ] 3.6 Build `POST /issues/bulk` — accept an array of issue IDs and an action (`resolve`, `unresolve`, `ignore`, `merge`); apply to all in a single transaction
-  - [ ] 3.7 Build `GET /issues/:id` — return issue detail including all associated `error_events`
-  - [ ] 3.8 Create `views/issues/list.html` — issues table with checkboxes, trend column (sparkline placeholder), event count, last seen, bulk action toolbar (Mark Resolved / Unresolved / Ignored / Merge); search input and filter dropdowns (Environment, Time Range, Sort By)
-  - [ ] 3.9 Create `views/issues/detail.html` — issue header, status badge, event count, stack trace block (JetBrains Mono), event history list, metadata display
-  - [ ] 3.10 Create `public/js/issues.js` — on page load fetch issues from `GET /issues` with current filters; render rows into the table; wire up search, filter dropdowns, and sort controls to re-fetch
-  - [ ] 3.11 Add sparkline rendering in `public/js/issues.js` — for each issue, draw a mini SVG or Canvas bar chart using the event counts bucketed by day
-  - [ ] 3.12 Add bulk action handling in `public/js/issues.js` — track checked checkboxes, enable/disable toolbar buttons, send `POST /issues/bulk` on button click, re-render the list
-  - [ ] 3.13 Create `public/js/issue-detail.js` — fetch `GET /issues/:id`, render stack trace with syntax-friendly formatting, render event history list with timestamps and metadata
+- [x] 3.0 Error Tracking
+  - [x] 3.1 Add schema to `db/schema.sql` for tables: `issues` (fingerprint, title, status, first_seen, last_seen, event_count) and `error_events` (issue_id, message, stack_trace, environment, level, metadata, timestamp)
+  - [x] 3.2 Create `services/fingerprint.js` — normalize error message and extract top 5 stack frames, return a SHA-256 hash as the fingerprint
+  - [x] 3.3 Build `POST /api/v1/errors` (API key protected) — validate payload, compute fingerprint, find or create issue, insert error event, increment event count and update `last_seen`
+  - [x] 3.4 Build `GET /issues` — paginated issues list filterable by `status`, `environment`, `timeRange`; sortable by `last_seen`, `first_seen`, `event_count`; supports keyword search on title
+  - [x] 3.5 Build `PATCH /issues/:id` — update a single issue's status (`resolved`, `unresolved`, `ignored`)
+  - [x] 3.6 Build `POST /issues/bulk` — accept an array of issue IDs and an action (`resolve`, `unresolve`, `ignore`, `merge`); apply to all in a single transaction
+  - [x] 3.7 Build `GET /issues/:id` — return issue detail including all associated `error_events`
+  - [x] 3.8 Create `views/issues/list.html` — issues table with checkboxes, trend column (sparkline placeholder), event count, last seen, bulk action toolbar (Mark Resolved / Unresolved / Ignored / Merge); search input and filter dropdowns (Environment, Time Range, Sort By)
+  - [x] 3.9 Create `views/issues/detail.html` — issue header, status badge, event count, stack trace block (JetBrains Mono), event history list, metadata display
+  - [x] 3.10 Create `public/js/issues.js` — on page load fetch issues from `GET /issues` with current filters; render rows into the table; wire up search, filter dropdowns, and sort controls to re-fetch
+  - [x] 3.11 Add sparkline rendering in `public/js/issues.js` — for each issue, draw a mini SVG or Canvas bar chart using the event counts bucketed by day
+  - [x] 3.12 Add bulk action handling in `public/js/issues.js` — track checked checkboxes, enable/disable toolbar buttons, send `POST /issues/bulk` on button click, re-render the list
+  - [x] 3.13 Create `public/js/issue-detail.js` — fetch `GET /issues/:id`, render stack trace with syntax-friendly formatting, render event history list with timestamps and metadata
 
 - [ ] 4.0 Logs
   - [ ] 4.1 Add schema to `db/schema.sql` for table: `logs` (project_id, timestamp, level, message, service, metadata); add composite index on `(project_id, timestamp, level)`
